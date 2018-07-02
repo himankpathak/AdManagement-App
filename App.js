@@ -20,7 +20,7 @@ export default class App extends Component {
           </View>
           <View style={styles.topbartext}>
             <Text style={{ fontSize:30, color:'#000'}}>
-                Title bar
+                React Native App
             </Text>
           </View>
           <View style={styles.topbutton}>
@@ -31,13 +31,13 @@ export default class App extends Component {
       </View>
 
             <View style={styles.container}>
-                  <ScrollView >
-                    <Text style={{fontSize:40}}>{`
-data with scroll view
-data with scroll view
-data with scroll view
-data with scroll view
-data with scroll view
+                  <ScrollView style={styles.displayText}>
+                    <Text style={{fontSize:36}}>{`
+\u2022 data with scroll view
+\u2022 data with scroll view
+\u2022 data with scroll view
+\u2022 data with scroll view
+\u2022 data with scroll view
                   `}
                     </Text>
                   </ScrollView>
@@ -81,4 +81,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
   },
 
+  displayText: {
+    paddingLeft:20,
+    paddingRight:20,
+  },
 });
