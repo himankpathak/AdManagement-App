@@ -13,9 +13,9 @@ export default class App extends Component {
     return (
       <View style={styles.maincontainer}>
       <View style={styles.titlebar}>
-            <View style={[styles.topbutton, {left:10}]} >
+            <View style={styles.topbutton} >
               <TouchableOpacity onPress={() => this.props.navigator.pop()}>
-              <Image style={{width:30, height: 40,}} source={require('./left-key.png')}/>
+              <Image style={{width:30, height: 40,}} source={require('./menu-icon.png')}/>
               </TouchableOpacity>
           </View>
           <View style={styles.topbartext}>
@@ -25,18 +25,20 @@ export default class App extends Component {
           </View>
           <View style={styles.topbutton}>
             <TouchableOpacity onPress={() => this.props.navigator.pop()}>
-            <Image style={{width:30, height: 40,}} source={require('./left-key.png')}/>
+            <Image style={{width:30, height: 40, }} source={require('./right-arrow.png')}/>
             </TouchableOpacity>
           </View>
       </View>
 
             <View style={styles.container}>
                   <ScrollView >
-                    <Text style={{fontSize:96}}>data with scroll view
-                    data with scroll view
-                    data with scroll view
-                    data with scroll view
-                    data with scroll view
+                    <Text style={{fontSize:40}}>{`
+data with scroll view
+data with scroll view
+data with scroll view
+data with scroll view
+data with scroll view
+                  `}
                     </Text>
                   </ScrollView>
             </View>
