@@ -4,17 +4,19 @@ import {
   Navigator,
   ScrollView,
   TouchableOpacity,
+  Button,
   Image,
   Text,
   View } from 'react-native';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
-export default class App extends Component {
+class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.maincontainer}>
       <View style={styles.titlebar}>
             <View style={styles.topbutton} >
-              <TouchableOpacity onPress={() => this.props.navigator.pop()}>
+              <TouchableOpacity onPress={() => this.props.navigation.toggleDrawer()}>
               <Image style={{width:30, height: 40,}} source={require('./menu-icon.png')}/>
               </TouchableOpacity>
           </View>
@@ -24,7 +26,7 @@ export default class App extends Component {
             </Text>
           </View>
           <View style={styles.topbutton}>
-            <TouchableOpacity onPress={() => this.props.navigator.pop()}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details')}>
             <Image style={{width:30, height: 40, }} source={require('./right-arrow.png')}/>
             </TouchableOpacity>
           </View>
@@ -42,9 +44,89 @@ export default class App extends Component {
                     </Text>
                   </ScrollView>
             </View>
-
         </View>
     );
+  }
+}
+
+class DetailsScreen extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Details Screen</Text>
+      </View>
+    );
+  }
+}
+
+class MyHomeScreen extends React.Component {
+  static navigationOptions = {
+    drawerLabel: 'Home',
+    drawerIcon: ({ tintColor }) => (
+      <Image
+        source={require('./left-key.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
+  };
+
+  render() {
+    return (
+      <Button
+        onPress={() => this.props.navigation.navigate('Notifications')}
+        title="Go to notifications"
+      />
+    );
+  }
+}
+
+class MyNotificationsScreen extends React.Component {
+  static navigationOptions = {
+    drawerLabel: 'Notifications',
+    drawerIcon: ({ tintColor }) => (
+      <Image
+        source={require('./right-arrow.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
+  };
+
+  render() {
+    return (
+      <Button
+        onPress={() => this.props.navigation.goBack()}
+        title="Go back home"
+      />
+    );
+  }
+}
+
+
+const MyApp = createDrawerNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+  Details: {
+    screen: DetailsScreen,
+  },
+  Notifications: {
+    screen: MyNotificationsScreen,
+  },
+});
+
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Details: DetailsScreen,
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
+
+export default class App extends React.Component {
+  render() {
+    return <MyApp />;
   }
 }
 
@@ -53,7 +135,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000',
   },
-
+  icon: {
+    width: 24,
+    height: 24,
+  },
   titlebar: {
       flex:1,
       flexDirection:'row',
