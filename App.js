@@ -15,6 +15,7 @@ import {
   Image,
   TextInput,
   Dimensions,
+  NativeModules,
   Modal,
   Text,
   View
@@ -139,18 +140,18 @@ class HomeScreen extends Component {
       <View style={styles.maincontainer}>
       <View style={styles.titlebar}>
             <View style={styles.topbutton} >
-              <TouchableOpacity onPress={() => this.props.navigation.toggleDrawer()}>
-              <Image style={{width:30, height: 40,}} source={require('./menu-icon.png')}/>
+              <TouchableOpacity style={{padding:50}} onPress={() => this.props.navigation.toggleDrawer()}>
+              <Image style={{width:30, height: 30, }} source={require('./menu-icon.png')}/>
               </TouchableOpacity>
           </View>
           <View style={styles.topbartext}>
-            <Text style={{ fontSize:30, color:'#000'}}>
-                React Native App
+            <Text style={{ fontSize:30, color:'#2f3640'}}>
+                Awesome App
             </Text>
           </View>
           <View style={styles.topbutton}>
-            <TouchableOpacity onPress={() => this.chatLogin()}>
-            <Image style={{width:30, height: 40, }} source={require('./right-arrow.png')}/>
+            <TouchableOpacity style={{padding:50}} onPress={() => console.log("press")}>
+            <Image style={{width:25, height: 30, }} source={require('./dots.png')}/>
             </TouchableOpacity>
           </View>
       </View>
@@ -187,10 +188,31 @@ class MyNotificationsScreen extends React.Component {
 
   render() {
     return (
-      <Button
-        onPress={() => this.props.navigation.goBack()}
-        title="Go back home"
-      />
+      <View style={styles.maincontainer}>
+      <View style={styles.titlebar}>
+            <View style={styles.topbutton} >
+              <TouchableOpacity style={{padding:50}} onPress={() => this.props.navigation.goBack()}>
+              <Image style={{width:30, height: 30, }} source={require('./left-arrow.png')}/>
+              </TouchableOpacity>
+          </View>
+          <View style={styles.topbartext}>
+            <Text style={{ fontSize:30, color:'#2f3640'}}>
+                Notifications
+            </Text>
+          </View>
+          <View style={styles.topbutton}>
+            <TouchableOpacity style={{padding:50}} onPress={() => console.log("press")}>
+            <Image style={{width:25, height: 30, }} source={require('./dots.png')}/>
+            </TouchableOpacity>
+          </View>
+      </View>
+
+            <View style={styles.container}>
+                <Text>
+                Notifications will appear here!
+                </Text>
+            </View>
+      </View>
     );
   }
 }
@@ -244,7 +266,6 @@ const styles = StyleSheet.create({
       flex:1,
       flexDirection:'row',
       backgroundColor: '#3498db',
-      paddingTop:20,
   },
 
   topbutton:{
@@ -261,7 +282,7 @@ const styles = StyleSheet.create({
     },
 
   container: {
-        flex:9,
+        flex:10,
         flexDirection:'row',
         backgroundColor: '#F5FCFF',
         justifyContent: 'space-around',
