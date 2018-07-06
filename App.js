@@ -1,15 +1,28 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+
 import React, { Component } from 'react';
 import {
+  Platform,
   StyleSheet,
   Navigator,
   ScrollView,
   TouchableOpacity,
   Button,
   Image,
+  TextInput,
+  Modal,
   Text,
-  View } from 'react-native';
+  View
+} from 'react-native';
+
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
+
+type Props = {};
 class HomeScreen extends Component {
   render() {
     return (
@@ -26,7 +39,7 @@ class HomeScreen extends Component {
             </Text>
           </View>
           <View style={styles.topbutton}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details')}>
+            <TouchableOpacity onPress={() => this.chatLogin()}>
             <Image style={{width:30, height: 40, }} source={require('./right-arrow.png')}/>
             </TouchableOpacity>
           </View>
@@ -44,7 +57,7 @@ class HomeScreen extends Component {
                     </Text>
                   </ScrollView>
             </View>
-        </View>
+      </View>
     );
   }
 }
@@ -55,27 +68,6 @@ class DetailsScreen extends Component {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Details Screen</Text>
       </View>
-    );
-  }
-}
-
-class MyHomeScreen extends React.Component {
-  static navigationOptions = {
-    drawerLabel: 'Home',
-    drawerIcon: ({ tintColor }) => (
-      <Image
-        source={require('./left-key.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
-      />
-    ),
-  };
-
-  render() {
-    return (
-      <Button
-        onPress={() => this.props.navigation.navigate('Notifications')}
-        title="Go to notifications"
-      />
     );
   }
 }
@@ -101,7 +93,6 @@ class MyNotificationsScreen extends React.Component {
   }
 }
 
-
 const MyApp = createDrawerNavigator({
   Home: {
     screen: HomeScreen,
@@ -113,16 +104,6 @@ const MyApp = createDrawerNavigator({
     screen: MyNotificationsScreen,
   },
 });
-
-const RootStack = createStackNavigator(
-  {
-    Home: HomeScreen,
-    Details: DetailsScreen,
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
 
 export default class App extends React.Component {
   render() {
