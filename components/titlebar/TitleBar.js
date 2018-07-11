@@ -1,8 +1,6 @@
 
 import React, { Component } from 'react';
 import {
-  Navigator,
-  ScrollView,
   TouchableOpacity,
   Image,
   Text,

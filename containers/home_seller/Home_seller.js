@@ -23,7 +23,7 @@ export default class Home_seller extends Component {
       <View style={styles.maincontainer}>
       <TitleBar isMedia={false} t_bar={this.t_bar1}/>
             <View style={styles.subcontainer}>
-
+              
             </View>
       </View>
     );
