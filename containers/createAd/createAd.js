@@ -11,25 +11,22 @@ import styles from './styles';
 import TitleBar from './../../components/titlebar/TitleBar';
 import CustomButton from './../../components/customButton/CustomButton';
 
-export default class Home_seller extends Component {
+export default class CreateAd extends Component {
   constructor(props) {
         super(props);
         this.toggleDraw = this.props.navigation.toggleDrawer.bind(this);
-        this.addNewAd=this.addNewAd.bind(this);
         this.t_bar1={
-          title:"Awesome App",
-          action:this.toggleDraw
+          title:"Create New Ad",
+          imgLeft:require('./../../components/img/add_new.png'),
+          action:this.props.navigation.goBack
         };
         this.createButton={
-            title:"Create New Ad",
-            img:require('./../../components/img/add_new.png'),
-            action:this.addNewAd,
+            title:"Submit Ad for Review",
+            img:require('./../../components/img/submit_icon.png'),
+            action:null,
             Buttoncss:{backgroundColor: '#dfe6e9'}
         };
     }
-  addNewAd(){
-    this.props.navigation.navigate("CreateNewAd");
-  }
 
   render() {
     return (
@@ -41,7 +38,6 @@ export default class Home_seller extends Component {
                     <CustomButton cbutton={this.createButton}/>
                 </View>
                 <View style={styles.subPart}>
-                  <Text style={styles.textPrimary}>No advertisement created yet!</Text>
                 </View>
               </ScrollView>
             </View>

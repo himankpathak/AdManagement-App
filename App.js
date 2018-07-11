@@ -14,6 +14,7 @@ import DetailsScreen from "./containers/DetailsScreen"
 import NotifScreen from "./containers/Notif"
 import Home_seller from "./containers/home_seller/Home_seller"
 import ChooseScreen from "./containers/choose_section/chooseScreen"
+import CreateAd from "./containers/createAd/createAd"
 
 class Hidden extends Component {
   render() {
@@ -31,11 +32,17 @@ const MyApp = createDrawerNavigator({
   Home: {
     screen: Home_seller,
   },
-  Details: {
+  Profile: {
     screen: DetailsScreen,
   },
   Notifications: {
     screen: NotifScreen,
+  },
+  CreateNewAd: {
+    screen: CreateAd,
+    navigationOptions: {
+      drawerLabel: "Create New Advert"
+    }
   },
 });
 
