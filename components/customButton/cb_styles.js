@@ -16,23 +16,19 @@ const styles = StyleSheet.create({
         alignItems:'center'
   },
   imgSize: {
-    width: 180,
-    height: 180,
-    left:25,
+    width: 30,
+    height: 30,
   },
   textStyle: {
-    fontSize:40,
+    fontSize:20,
   	color: '#2c3e50',
   	textAlign: 'center',
-    left:40,
   },
 
   buttonStyle: {
     flexDirection:'row',
 	  padding:10,
-    height:200,
-  	backgroundColor: '#f39c12',
-  	borderRadius:15
+  	borderRadius:15,
   }
 });
 

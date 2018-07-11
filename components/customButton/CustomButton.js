@@ -16,12 +16,12 @@ class CustomButton extends Component {
 
   render() {
     return (
-      <TouchableOpacity style={styles.buttonStyle} onPress={this.props.cbutton.action}>
+      <TouchableOpacity style={[styles.buttonStyle, this.props.cbutton.Buttoncss]} onPress={this.props.cbutton.action}>
         <View style={styles.imgcontainer}>
-            <Image style={styles.imgSize} source={this.props.cbutton.img}/>
+            <Image style={[styles.imgSize, this.props.cbutton.Imgcss]} source={this.props.cbutton.img}/>
           </View>
           <View style={styles.textcontainer}>
-            <Text style={styles.textStyle}>
+            <Text style={[styles.textStyle, this.props.cbutton.Textcss]}>
               {this.props.cbutton.title}
             </Text>
           </View>

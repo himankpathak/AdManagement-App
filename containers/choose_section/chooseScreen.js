@@ -16,23 +16,27 @@ import CustomButton from './../../components/customButton/CustomButton';
 export default class ChooseScreen extends React.Component {
   constructor(props){
     super(props);
-          this.nav = this.props.navigation.navigate.bind(this);
           this.switchSell=this.switchSell.bind(this);
           this.cbutton1={
             title:"SELLER",
             img:require('./../../components/img/seller_icon.png'),
             action:this.switchSell,
+            Buttoncss:{backgroundColor: '#f39c12',height:200,},
+            Imgcss:{width: 180,height: 180,left:25,},
+            Textcss:{fontSize:40,left:40,},
           };
           this.cbutton2={
             title:"BUYER",
             img:require('./../../components/img/buyer_icon.png'),
             action:null,
+            Imgcss:{width: 180,height: 180,left:25,},
+            Textcss:{fontSize:40,left:40,},
           };
 
     }
   switchSell(){
     Alert.alert('Switching to seller mode');
-    this.nav("Home");
+    this.props.navigation.navigate("Home");
   }
 
   render() {
