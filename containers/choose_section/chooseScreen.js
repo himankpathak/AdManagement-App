@@ -19,7 +19,14 @@ export default class ChooseScreen extends React.Component {
           this.nav = this.props.navigation.navigate.bind(this);
           this.switchSell=this.switchSell.bind(this);
           this.cbutton1={
-            title:"Awesome App",
+            title:"SELLER",
+            img:require('./../../components/img/seller_icon.png'),
+            action:this.switchSell,
+          };
+          this.cbutton2={
+            title:"BUYER",
+            img:require('./../../components/img/buyer_icon.png'),
+            action:null,
           };
 
     }
@@ -32,21 +39,10 @@ export default class ChooseScreen extends React.Component {
     return (
       <View style={styles.maincontainer}>
         <View style={styles.subcontainer}>
-          <Text>HEYYY</Text>
           <CustomButton cbutton={this.cbutton1} />
         </View>
         <View style={styles.subcontainer}>
-          <Text>HEYYY 2</Text>
-          <TouchableOpacity style={styles.topacity} onPress={this.switchSell}>
-              <View style={styles.imgcontainer}>
-                <Image style={styles.imgSize} source={require('./../../components/img/menu-icon.png')}/>
-              </View>
-              <View style={styles.textcontainer} >
-                <Text style={styles.displayText}>
-                  {this.cbutton1.title}
-                </Text>
-              </View>
-          </TouchableOpacity>
+          <CustomButton cbutton={this.cbutton2} />
         </View>
       </View>
     );

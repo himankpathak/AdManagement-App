@@ -4,35 +4,36 @@ import {
 } from 'react-native';
 
 const styles = StyleSheet.create({
-  maincontainer: {
-    flex: 1,
-    backgroundColor: '#050',
-  },
-  topacity: {
-    flex: 1,
-    paddingTop:20,
-    paddingBottom:20,
-    flexDirection:'row',
-    backgroundColor: '#955',
-  },
   imgcontainer: {
-        flex:2,
+        flex:3,
         flexDirection:'row',
-        backgroundColor: '#F5FCFF',
+        justifyContent: 'space-around',
+        alignItems:'center'
   },
   textcontainer: {
-        flex:8,
+        flex:7,
         flexDirection:'row',
-        backgroundColor: '#05FCEF',
+        alignItems:'center'
   },
   imgSize: {
-    width: 30,
-    height: 30,
+    width: 180,
+    height: 180,
+    left:25,
   },
-  displayText: {
-    fontSize:30,
-    color:'#2c3e50',
+  textStyle: {
+    fontSize:40,
+  	color: '#2c3e50',
+  	textAlign: 'center',
+    left:40,
   },
+
+  buttonStyle: {
+    flexDirection:'row',
+	  padding:10,
+    height:200,
+  	backgroundColor: '#f39c12',
+  	borderRadius:15
+  }
 });
 
 export default styles
