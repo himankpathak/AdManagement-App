@@ -22,7 +22,7 @@ export default class Home_seller extends Component {
         };
         this.createButton={
             title:"Create New Ad",
-            img:require('./../../components/img/add_new.png'),
+            img:require('./../../assets/img/add_new.png'),
             action:this.addNewAd,
             Buttoncss:{backgroundColor: '#dfe6e9'}
         };

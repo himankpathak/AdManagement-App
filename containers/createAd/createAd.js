@@ -17,12 +17,12 @@ export default class CreateAd extends Component {
         this.toggleDraw = this.props.navigation.toggleDrawer.bind(this);
         this.t_bar1={
           title:"Create New Ad",
-          imgLeft:require('./../../components/img/add_new.png'),
+          imgLeft:require('./../../assets/img/add_new.png'),
           action:this.props.navigation.goBack
         };
         this.createButton={
             title:"Submit Ad for Review",
-            img:require('./../../components/img/submit_icon.png'),
+            img:require('./../../assets/img/submit_icon.png'),
             action:null,
             Buttoncss:{backgroundColor: '#dfe6e9'}
         };
@@ -35,9 +35,19 @@ export default class CreateAd extends Component {
             <View style={styles.subcontainer}>
               <ScrollView>
                 <View style={styles.subPart}>
-                    <CustomButton cbutton={this.createButton}/>
+                  console.log("Hoshi1");
                 </View>
                 <View style={styles.subPart}>
+
+                </View>
+                <View style={styles.subPart}>
+
+                </View>
+                <View style={styles.subPart}>
+
+                </View>
+                <View style={styles.subPart}>
+                    <CustomButton cbutton={this.createButton}/>
                 </View>
               </ScrollView>
             </View>

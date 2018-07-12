@@ -19,7 +19,7 @@ export default class ChooseScreen extends React.Component {
           this.switchSell=this.switchSell.bind(this);
           this.cbutton1={
             title:"SELLER",
-            img:require('./../../components/img/seller_icon.png'),
+            img:require('./../../assets/img/seller_icon.png'),
             action:this.switchSell,
             Buttoncss:{backgroundColor: '#f39c12',height:200,},
             Imgcss:{width: 180,height: 180,left:25,},
@@ -27,7 +27,7 @@ export default class ChooseScreen extends React.Component {
           };
           this.cbutton2={
             title:"BUYER",
-            img:require('./../../components/img/buyer_icon.png'),
+            img:require('./../../assets/img/buyer_icon.png'),
             action:null,
             Imgcss:{width: 180,height: 180,left:25,},
             Textcss:{fontSize:40,left:40,},
