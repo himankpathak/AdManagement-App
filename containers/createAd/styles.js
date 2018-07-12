@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     fontSize:30,
   	color: '#0984e3',
   },
+  input: {
+    marginTop: 4,
+  },
   overlay: {
      ...StyleSheet.absoluteFillObject,
      backgroundColor: 'rgba(0,0,0,0.5)'
