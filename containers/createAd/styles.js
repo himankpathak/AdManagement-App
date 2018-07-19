@@ -29,7 +29,12 @@ const styles = StyleSheet.create({
   overlay: {
      ...StyleSheet.absoluteFillObject,
      backgroundColor: 'rgba(0,0,0,0.5)'
-   }
+   },
+   uploadAvatar:{
+     width:200,
+     height:200,
+     padding:20,
+   },
 });
 
 export default styles
