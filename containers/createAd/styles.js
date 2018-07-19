@@ -16,8 +16,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
   },
   subPart:{
-    height:100,
     padding:20,
+  },
+  subImage:{
+    padding:20,
+    alignItems: 'center',
   },
   textPrimary:{
     fontSize:30,
@@ -34,6 +37,7 @@ const styles = StyleSheet.create({
      width:200,
      height:200,
      padding:20,
+     paddingBottom:50,
    },
 });
 

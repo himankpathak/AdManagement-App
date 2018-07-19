@@ -28,6 +28,7 @@ export default class CreateAd extends Component {
           year:null,
           month:null,
           date:null,
+          avatarSource:null,
         };
         this.toggleDraw = this.props.navigation.toggleDrawer.bind(this);
         this.t_bar1={
@@ -131,12 +132,9 @@ export default class CreateAd extends Component {
                   : <Text>{this.state.day}/{this.state.month}/{this.state.year}</Text>}
 
                 </View>
-                <View style={styles.subPart}>
+                <View style={styles.subImage}>
                 <Button onPress={this.mainImage} title="Upload Image"/>
                   <Text>Upload Image here</Text>
-                </View>
-                <View style={styles.subPart}>
-
                   <Image source={this.state.avatarSource} style={styles.uploadAvatar} />
                 </View>
                 <View style={styles.subPart}>
