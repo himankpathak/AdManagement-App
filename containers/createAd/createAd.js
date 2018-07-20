@@ -31,10 +31,11 @@ export default class CreateAd extends Component {
           avatarSource:null,
         };
         this.toggleDraw = this.props.navigation.toggleDrawer.bind(this);
+        this.newBack = this.newBack.bind(this);
         this.t_bar1={
           title:"Create New Ad",
-          imgLeft:require('./../../assets/img/add_new.png'),
-          action:this.props.navigation.goBack
+          imgLeft:require('./../../assets/img/left-arrow.png'),
+          action:this.newBack
         };
         this.createButton={
             title:"Submit Ad for Review",
@@ -44,6 +45,9 @@ export default class CreateAd extends Component {
         };
         this.dateOpener=this.dateOpener.bind(this);
         this.mainImage=this.mainImg.bind(this);
+    }
+    newBack(){
+      this.props.navigation.navigate("Home");
     }
 
     mainImg(){

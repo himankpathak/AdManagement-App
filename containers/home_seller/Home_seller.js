@@ -16,6 +16,7 @@ export default class Home_seller extends Component {
         super(props);
         this.toggleDraw = this.props.navigation.toggleDrawer.bind(this);
         this.addNewAd=this.addNewAd.bind(this);
+        this.showdb=this.showdb.bind(this);
         this.t_bar1={
           title:"Awesome App",
           action:this.toggleDraw
@@ -26,6 +27,15 @@ export default class Home_seller extends Component {
             action:this.addNewAd,
             Buttoncss:{backgroundColor: '#dfe6e9'}
         };
+        this.createButton2={
+            title:"Show Database",
+            img:require('./../../assets/img/right-arrow.png'),
+            action:this.showdb,
+            Buttoncss:{backgroundColor: '#dfe6e9'}
+        };
+    }
+  showdb(){
+      this.props.navigation.navigate("ShowDB");
     }
   addNewAd(){
     this.props.navigation.navigate("CreateNewAd");
@@ -42,6 +52,9 @@ export default class Home_seller extends Component {
                 </View>
                 <View style={styles.subPart}>
                   <Text style={styles.textPrimary}>No advertisement created yet!</Text>
+                </View>
+                <View style={styles.subPart}>
+                  <CustomButton cbutton={this.createButton2}/>
                 </View>
               </ScrollView>
             </View>
