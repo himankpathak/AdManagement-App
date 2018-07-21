@@ -20,6 +20,8 @@ import {
 
 //var ImagePicker = require('react-native-image-picker');
 
+  var SQLite = require('react-native-sqlite-storage');
+  var db = SQLite.openDatabase({name:'test.db', createFromLocation:'~sqlitemain.db'});
 
 export default class CreateAd extends Component {
   constructor(props) {
@@ -29,9 +31,11 @@ export default class CreateAd extends Component {
           month:null,
           date:null,
           avatarSource:null,
+          adNameValue:"",
+          adDValue:"",
         };
-        this.toggleDraw = this.props.navigation.toggleDrawer.bind(this);
         this.newBack = this.newBack.bind(this);
+        this.submit=this.submit.bind(this);
         this.t_bar1={
           title:"Create New Ad",
           imgLeft:require('./../../assets/img/left-arrow.png'),
@@ -40,7 +44,7 @@ export default class CreateAd extends Component {
         this.createButton={
             title:"Submit Ad for Review",
             img:require('./../../assets/img/submit_icon.png'),
-            action:null,
+            action:this.submit,
             Buttoncss:{backgroundColor: '#dfe6e9'}
         };
         this.dateOpener=this.dateOpener.bind(this);
@@ -48,6 +52,34 @@ export default class CreateAd extends Component {
     }
     newBack(){
       this.props.navigation.navigate("Home");
+    }
+    submit(){
+      console.log(this.state.adNameValue);
+      console.log(this.state.adDValue);
+      this.pushDB();
+      // db.transaction((tx) => {
+      //   tx.executeSql('DELETE FROM adList;');
+      // });
+    }
+
+    async pushDB(){
+      db.transaction((tx) => {
+        tx.executeSql('INSERT INTO adList (adName, description) VALUES ("'+this.state.adNameValue+'", "'+this.state.adDValue+'");');
+      });
+
+    }
+
+    closeDatabase = () => {
+      if (db) {
+        console.log("Closing database ...");
+        db.close().then((status) => {
+          console.log("Database CLOSED");
+        }).catch((error) => {
+          this.errorCB(error);
+        });
+      } else {
+          console.log("Database was not OPENED");
+      }
     }
 
     mainImg(){
@@ -80,10 +112,10 @@ export default class CreateAd extends Component {
       console.log('User tapped custom button: ', response.customButton);
     }
     else {
-      let source = { uri: response.uri };
+      //let source = { uri: response.uri };
 
       // You can also display the image using data:
-      // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+      let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
       this.setState({
         avatarSource: source
@@ -118,6 +150,7 @@ export default class CreateAd extends Component {
                   label={'Ad Name'}
                   maskColor={'#F9F7F6'}
                   borderColor={'#3498db'}
+                  onChangeText={(text) => { this.setState({adNameValue: text})}}
                 />
                 </View>
                 <View style={styles.subPart}>
@@ -127,6 +160,7 @@ export default class CreateAd extends Component {
                   style={styles.input}
                   multiline = {true}
                   numberOfLines = {4}
+                  onChangeText={(text) => { this.setState({adDValue: text})}}
                   />
 
                 </View>

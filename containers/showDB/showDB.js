@@ -14,10 +14,11 @@ var db = SQLite.openDatabase({name:'test.db', createFromLocation:'~sqlitemain.db
 export default class ShowDB extends Component {
   constructor(props){
     super(props);
+    this.newBack = this.newBack.bind(this);
     this.t_bar={
       title:"Database Details",
       imgLeft:require('./../../assets/img/left-arrow.png'),
-      action:this.props.navigation.goBack
+      action:this.newBack
     };
     this.state={
       adName:"",
@@ -36,14 +37,18 @@ export default class ShowDB extends Component {
             row = results.rows.item(i);
             console.log(row);
 
-            adListArr.push(<Text key={i} style={styles.textPrimary}>{row.adName} - {row.description}</Text>);
+            adListArr.push(<Text key={i} style={styles.textPrimary}>{row.adName} - {row.description}</Text>
+            );
 
           }
         this.setState({adListArr:adListArr});
         }
       });
   });
+  }
 
+  newBack(){
+    this.props.navigation.navigate("Home");
   }
 
   render() {

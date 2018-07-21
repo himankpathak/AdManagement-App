@@ -19,6 +19,12 @@ const styles = StyleSheet.create({
     fontSize:30,
   	color: '#0984e3',
   },
+  uploadAvatar:{
+    width:200,
+    height:200,
+    padding:20,
+    paddingBottom:50,
+  },
 });
 
 export default styles
