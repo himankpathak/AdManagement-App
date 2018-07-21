@@ -37,7 +37,8 @@ export default class ShowDB extends Component {
             row = results.rows.item(i);
             console.log(row);
 
-            adListArr.push(<Text key={i} style={styles.textPrimary}>{row.adName} - {row.description}</Text>
+            adListArr.push(<View key={i} style={styles.subPart}><Text style={styles.textSecond}>{row.dateCreated} &gt;&gt; {row.adName} - {row.description}</Text>
+                 </View>
             );
 
           }

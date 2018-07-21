@@ -29,7 +29,7 @@ export default class CreateAd extends Component {
         this.state={
           year:null,
           month:null,
-          date:null,
+          day:null,
           avatarSource:null,
           adNameValue:"",
           adDValue:"",
@@ -63,8 +63,10 @@ export default class CreateAd extends Component {
     }
 
     async pushDB(){
+      var date=this.state.day+"/"+this.state.month+"/"+this.state.year;
       db.transaction((tx) => {
-        tx.executeSql('INSERT INTO adList (adName, description) VALUES ("'+this.state.adNameValue+'", "'+this.state.adDValue+'");');
+        tx.executeSql('INSERT INTO adList (adName, description, dateCreated, adImage) VALUES\
+        ("'+this.state.adNameValue+'", "'+this.state.adDValue+'","'+date+'","'+this.state.avatarSource+'");');
       });
 
     }
@@ -112,10 +114,10 @@ export default class CreateAd extends Component {
       console.log('User tapped custom button: ', response.customButton);
     }
     else {
-      //let source = { uri: response.uri };
+      let source = { uri: response.uri };
 
       // You can also display the image using data:
-      let source = { uri: 'data:image/jpeg;base64,' + response.data };
+      // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
       this.setState({
         avatarSource: source
@@ -131,7 +133,7 @@ export default class CreateAd extends Component {
     const {action, year, month, day} = await DatePickerAndroid.open({
       date: new Date()
     });
-    this.setState({year:year,month:month,day:day});
+    this.setState({year:year,month:month+1,day:day});
   } catch ({code, message}) {
     console.warn('Cannot open date picker', message);
   }
