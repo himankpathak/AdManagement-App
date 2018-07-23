@@ -55,7 +55,6 @@ export default class CreateAd extends Component {
     }
     submit(){
       console.log(this.state.adNameValue);
-      console.log(this.state.adDValue);
       this.pushDB();
       // db.transaction((tx) => {
       //   tx.executeSql('DELETE FROM adList;');
@@ -66,7 +65,7 @@ export default class CreateAd extends Component {
       var date=this.state.day+"/"+this.state.month+"/"+this.state.year;
       db.transaction((tx) => {
         tx.executeSql('INSERT INTO adList (adName, description, dateCreated, adImage) VALUES\
-        ("'+this.state.adNameValue+'", "'+this.state.adDValue+'","'+date+'","'+this.state.avatarSource+'");');
+        ("'+this.state.adNameValue+'", "'+this.state.adDValue+'","'+date+'","'+this.state.dataImg+'");');
       });
 
     }
@@ -102,7 +101,7 @@ export default class CreateAd extends Component {
     * The second arg is the callback which sends object: response (more info below in README)
     */
     ImagePicker.showImagePicker(options, (response) => {
-    console.log('Response = ', response);
+    // console.log('Response = ', response);
 
     if (response.didCancel) {
       console.log('User cancelled image picker');
@@ -114,13 +113,14 @@ export default class CreateAd extends Component {
       console.log('User tapped custom button: ', response.customButton);
     }
     else {
-      let source = { uri: response.uri };
+      //let source = { uri: response.uri };
 
       // You can also display the image using data:
-      // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+      let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
       this.setState({
-        avatarSource: source
+        avatarSource: source,
+        dataImg: response.data
       });
     }
     });

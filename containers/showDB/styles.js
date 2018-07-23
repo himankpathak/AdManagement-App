@@ -16,8 +16,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
   },
   subPart:{
-    height:100,
-    padding:20,
+    padding:10,
   },
   textPrimary:{
     fontSize:30,
@@ -28,8 +27,8 @@ const styles = StyleSheet.create({
   	color: '#0782e1',
   },
   uploadAvatar:{
-    width:50,
-    height:50,
+    width:160,
+    height:160,
   },
 });
 

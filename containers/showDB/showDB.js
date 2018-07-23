@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import {
   Text,
+  Image,
   View
 } from 'react-native';
 
@@ -21,8 +22,6 @@ export default class ShowDB extends Component {
       action:this.newBack
     };
     this.state={
-      adName:"",
-      adDescription:"",
       adListArr:[],
     };
 
@@ -32,17 +31,17 @@ export default class ShowDB extends Component {
         if(len > 0) {
           // exists owner name John
           var row;
-          var adListArr=[];
+          var sourceImg;
+          var adList=[];
           for(let i = 0; i < len; i++){
             row = results.rows.item(i);
-            console.log(row);
+            sourceImg = { uri: 'data:image/jpeg;base64,' + row.adImage };
 
-            adListArr.push(<View key={i} style={styles.subPart}><Text style={styles.textSecond}>{row.dateCreated} &gt;&gt; {row.adName} - {row.description}</Text>
-                 </View>
-            );
+            adList.push(<View key={i} style={styles.subPart}><Text style={styles.textSecond}>{row.dateCreated} &gt;&gt; {row.adName} - {row.description}</Text>
+            <Image source={sourceImg} style={styles.uploadAvatar}/></View>);
 
           }
-        this.setState({adListArr:adListArr});
+        this.setState({adListArr:adList});
         }
       });
   });
