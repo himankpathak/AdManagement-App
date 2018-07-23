@@ -34,17 +34,15 @@ export default class CreateAd extends Component {
           adNameValue:"",
           adDValue:"",
         };
-        this.newBack = this.newBack.bind(this);
-        this.submit=this.submit.bind(this);
         this.t_bar1={
           title:"Create New Ad",
           imgLeft:require('./../../assets/img/left-arrow.png'),
-          action:this.newBack
+          action:this.newBack.bind(this),
         };
         this.createButton={
             title:"Submit Ad for Review",
             img:require('./../../assets/img/submit_icon.png'),
-            action:this.submit,
+            action:this.submit.bind(this),
             Buttoncss:{backgroundColor: '#dfe6e9'}
         };
         this.dateOpener=this.dateOpener.bind(this);

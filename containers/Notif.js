@@ -12,12 +12,16 @@ import TitleBar from './../components/titlebar/TitleBar';
 export default class MyNotificationsScreen extends React.Component {
   constructor(props){
     super(props);
-    this.toggleDraw = this.props.navigation.toggleDrawer.bind(this);
     this.t_bar2={
       title:"Notifications",
-      action:this.toggleDraw
+      action:this.newBack.bind(this),
+      imgLeft:require('./../assets/img/left-arrow.png'),
     };
 
+  }
+  
+  newBack(){
+    this.props.navigation.navigate("Home");
   }
 
   static navigationOptions = {

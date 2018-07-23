@@ -15,11 +15,10 @@ var db = SQLite.openDatabase({name:'test.db', createFromLocation:'~sqlitemain.db
 export default class ShowDB extends Component {
   constructor(props){
     super(props);
-    this.newBack = this.newBack.bind(this);
     this.t_bar={
       title:"Database Details",
       imgLeft:require('./../../assets/img/left-arrow.png'),
-      action:this.newBack
+      action:this.newBack.bind(this),
     };
     this.state={
       adListArr:[],
