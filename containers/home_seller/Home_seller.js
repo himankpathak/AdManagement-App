@@ -15,8 +15,6 @@ export default class Home_seller extends Component {
   constructor(props) {
         super(props);
         this.toggleDraw = this.props.navigation.toggleDrawer.bind(this);
-        this.addNewAd=this.addNewAd.bind(this);
-        this.showdb=this.showdb.bind(this);
         this.t_bar1={
           title:"Awesome App",
           action:this.toggleDraw
@@ -24,13 +22,13 @@ export default class Home_seller extends Component {
         this.createButton={
             title:"Create New Ad",
             img:require('./../../assets/img/add_new.png'),
-            action:this.addNewAd,
+            action:this.addNewAd.bind(this),
             Buttoncss:{backgroundColor: '#dfe6e9'}
         };
         this.createButton2={
             title:"Show Database",
             img:require('./../../assets/img/right-arrow.png'),
-            action:this.showdb,
+            action:this.showdb.bind(this),
             Buttoncss:{backgroundColor: '#dfe6e9'}
         };
     }

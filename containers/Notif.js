@@ -19,9 +19,9 @@ export default class MyNotificationsScreen extends React.Component {
     };
 
   }
-  
+
   newBack(){
-    this.props.navigation.navigate("Home");
+    this.props.navigation.navigate("Home_Seller");
   }
 
   static navigationOptions = {

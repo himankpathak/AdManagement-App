@@ -47,7 +47,7 @@ export default class ShowDB extends Component {
   }
 
   newBack(){
-    this.props.navigation.navigate("Home");
+    this.props.navigation.navigate("Home_Seller");
   }
 
   render() {

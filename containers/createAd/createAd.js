@@ -49,7 +49,7 @@ export default class CreateAd extends Component {
         this.mainImage=this.mainImg.bind(this);
     }
     newBack(){
-      this.props.navigation.navigate("Home");
+      this.props.navigation.navigate("Home_Seller");
     }
     submit(){
       console.log(this.state.adNameValue);

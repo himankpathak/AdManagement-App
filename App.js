@@ -30,8 +30,11 @@ const MyApp = createDrawerNavigator({
       drawerLabel: <Hidden />
     }
   },
-  Home: {
+  Home_Seller: {
     screen: Home_seller,
+    navigationOptions: {
+      drawerLabel: "Home",
+    }
   },
   Profile: {
     screen: DetailsScreen,
