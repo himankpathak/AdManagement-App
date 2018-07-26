@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
   Text,
   Image,
-  View
+  View,
+  ScrollView,
 } from 'react-native';
 
 import styles from './styles';
@@ -55,8 +56,10 @@ export default class ShowDB extends Component {
       <View style={styles.maincontainer}>
         <TitleBar isMedia={false} t_bar={this.t_bar}/>
         <View style={styles.subcontainer}>
+          <ScrollView>
           <Text style={styles.textPrimary}>Database Main</Text>
           {this.state.adListArr}
+          </ScrollView>
         </View>
       </View>
     );

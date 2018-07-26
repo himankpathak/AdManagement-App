@@ -85,6 +85,9 @@ export default class CreateAd extends Component {
 
     var options = {
     title: 'Select Avatar',
+    maxWidth:400,
+    maxHeight:300,
+    allowsEditing: true,
     customButtons: [
       {name: 'fb', title: 'Choose Photo from Facebook'},
     ],
