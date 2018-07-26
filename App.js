@@ -6,16 +6,12 @@ import {
   View
 } from 'react-native';
 
-import TitleBar from './components/titlebar/TitleBar';
-import RecyclerView from "./components/RecyclerListView/RecyclerView";
 import { createDrawerNavigator } from 'react-navigation';
 
-import DetailsScreen from "./containers/DetailsScreen"
-import NotifScreen from "./containers/Notif"
-import Home_seller from "./containers/home_seller/Home_seller"
+import SellNav from "./containers/SellNav"
+import BuyNav from "./containers/BuyNav"
 import ChooseScreen from "./containers/choose_section/chooseScreen"
-import ShowDB from "./containers/showDB/showDB"
-import CreateAd from "./containers/createAd/createAd"
+
 
 class Hidden extends Component {
   render() {
@@ -30,27 +26,18 @@ const MyApp = createDrawerNavigator({
       drawerLabel: <Hidden />
     }
   },
-  Home_Seller: {
-    screen: Home_seller,
+  SellNav: {
+    screen: SellNav,
     navigationOptions: {
-      drawerLabel: "Home",
+      drawerLabel: <Hidden />
     }
   },
-  Profile: {
-    screen: DetailsScreen,
-  },
-  Notifications: {
-    screen: NotifScreen,
-  },
-  ShowDB: {
-    screen: ShowDB,
-  },
-  CreateNewAd: {
-    screen: CreateAd,
+  BuyNav: {
+    screen: BuyNav,
     navigationOptions: {
-      drawerLabel: "Create New Advert",
+      drawerLabel: <Hidden />
     }
-  },
+  }
 });
 
 

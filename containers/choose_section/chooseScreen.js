@@ -35,11 +35,11 @@ export default class ChooseScreen extends React.Component {
     }
   switchSell(){
     Alert.alert('Switching to seller mode');
-    this.props.navigation.navigate("Home_Seller");
+    this.props.navigation.navigate("SellNav");
   }
   switchBuy(){
     Alert.alert('Switching to buyer mode');
-    this.props.navigation.navigate("Home_Buyer");
+    this.props.navigation.navigate("BuyNav");
   }
 
   render() {
