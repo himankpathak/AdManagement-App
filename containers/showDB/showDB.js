@@ -26,7 +26,7 @@ export default class ShowDB extends Component {
     };
 
     db.transaction((tx) => {
-    tx.executeSql('SELECT * FROM adList', [], (tx, results) => {
+    tx.executeSql('SELECT adName,description,adImage,dateCreated,bidAmt FROM adList LEFT JOIN bidList on bidList.adNo = adList.id;', [], (tx, results) => {
         var len = results.rows.length;
         if(len > 0) {
           // exists owner name John
@@ -37,8 +37,11 @@ export default class ShowDB extends Component {
             row = results.rows.item(i);
             sourceImg = { uri: 'data:image/jpeg;base64,' + row.adImage };
 
-            adList.push(<View key={i} style={styles.subPart}><Text style={styles.textSecond}>{row.dateCreated} &gt;&gt; {row.adName} - {row.description}</Text>
-            <Image source={sourceImg} style={styles.uploadAvatar}/></View>);
+            adList.push(<View key={i} style={styles.subPart}>
+              <Text style={styles.textSecond}>{row.dateCreated} &gt;&gt; {row.adName} - {row.description}</Text>
+            <Image source={sourceImg} style={styles.uploadAvatar}/>
+            <Text style={styles.textSecond}>Current Bid: {row.bidAmt}</Text>
+            </View>);
 
           }
         this.setState({adListArr:adList});

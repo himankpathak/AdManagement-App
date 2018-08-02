@@ -8,6 +8,9 @@ import {
 import styles from './rlv_styles';
 import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview";
 
+var SQLite = require('react-native-sqlite-storage');
+var db = SQLite.openDatabase({name:'test.db', createFromLocation:'~sqlitemain.db'})
+
 type Props = {};
 const ViewTypes = {
     FULL: 0,
@@ -22,7 +25,8 @@ class CellContainer extends React.Component {
         this._containerId = containerCount++;
     }
     render() {
-        return <View {...this.props}>{this.props.children}<Text>Cell Id: {this._containerId}</Text></View>;
+        return ( <View {...this.props}>{this.props.children}
+                <Text>Cell Id: {this._containerId}</Text></View> );
     }
 }
 
@@ -45,25 +49,9 @@ class RecyclerView extends Component {
         //You'll need data in most cases, we don't provide it by default to enable things like data virtualization in the future
         //NOTE: For complex lists LayoutProvider will also be complex it would then make sense to move it to a different file
         this._layoutProvider = new LayoutProvider(
-            index => {
-                if (index % 3 === 0) {
-                    return ViewTypes.FULL;
-                } else if (index % 3 === 1) {
-                    return ViewTypes.HALF_LEFT;
-                } else {
-                    return ViewTypes.HALF_RIGHT;
-                }
-            },
+            index => {  return ViewTypes.FULL;  },
             (type, dim) => {
                 switch (type) {
-                    case ViewTypes.HALF_LEFT:
-                        dim.width = width / 2;
-                        dim.height = 160;
-                        break;
-                    case ViewTypes.HALF_RIGHT:
-                        dim.width = width / 2;
-                        dim.height = 160;
-                        break;
                     case ViewTypes.FULL:
                         dim.width = width;
                         dim.height = 140;
@@ -81,9 +69,26 @@ class RecyclerView extends Component {
         this.state = {
             dataProvider: dataProvider.cloneWithRows(this._generateArray(300))
         };
+        console.log(this.state.dataProvider);
     }
 
     _generateArray(n) {
+      db.transaction((tx) => {
+      tx.executeSql('SELECT * FROM adList', [], (tx, results) => {
+          var len = results.rows.length;
+          if(len > 0) {
+
+            var row;
+            var sourceImg;
+            var adList= new Array(len);
+            for(let i = 0; i < len; i++){
+              adList[i] = results.rows.item(i);
+
+            }
+            return adList
+          }
+        });
+    });
         let arr = new Array(n);
         for (let i = 0; i < n; i++) {
             arr[i] = i;
@@ -93,29 +98,12 @@ class RecyclerView extends Component {
 
     //Given type and data return the view component
     _rowRenderer(type, data) {
-        //You can return any view here, CellContainer has no special significance
-        switch (type) {
-            case ViewTypes.HALF_LEFT:
-                return (
-                    <CellContainer style={styles.containerGridLeft}>
+
+        return (  <CellContainer style={styles.recontainer}>
                         <Text>Data: {data}</Text>
-                    </CellContainer>
+                  </CellContainer>
                 );
-            case ViewTypes.HALF_RIGHT:
-                return (
-                    <CellContainer style={styles.containerGridRight}>
-                        <Text>Data: {data}</Text>
-                    </CellContainer>
-                );
-            case ViewTypes.FULL:
-                return (
-                    <CellContainer style={styles.recontainer}>
-                        <Text>Data: {data}</Text>
-                    </CellContainer>
-                );
-            default:
-                return null;
-        }}
+        }
 
   render() {
     return (

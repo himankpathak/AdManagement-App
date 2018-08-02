@@ -6,6 +6,7 @@ import {
   View,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 
 import styles from './styles';
@@ -26,6 +27,7 @@ export default class AddBid extends Component {
   constructor(props) {
         super(props);
         this.state={
+          adListArr:[],
           year:null,
           month:null,
           day:null,
@@ -38,31 +40,34 @@ export default class AddBid extends Component {
           imgLeft:require('./../../assets/img/left-arrow.png'),
           action:this.newBack.bind(this),
         };
-        this.createButton={
-            title:"Submit Ad for Review",
-            img:require('./../../assets/img/submit_icon.png'),
-            action:this.submit.bind(this),
-            Buttoncss:{backgroundColor: '#dfe6e9'}
-        };
+
+        db.transaction((tx) => {
+          tx.executeSql('SELECT * FROM adList', [], (tx, results) => {
+              var len = results.rows.length;
+              if(len > 0) {
+                // exists owner name John
+                var row;
+                var sourceImg;
+                var adList=[];
+                for(let i = 0; i < len; i++){
+                  row = results.rows.item(i);
+                  sourceImg = { uri: 'data:image/jpeg;base64,' + row.adImage };
+
+                  adList.push(<TouchableOpacity onPress={() => (this.moveToBid.bind(this))(i)} key={i} style={styles.subPart}><Text style={styles.textSecond}>{row.dateCreated} &gt;&gt; {row.adName} - {row.description}</Text>
+                  <Image source={sourceImg} style={styles.uploadAvatar}/></TouchableOpacity>);
+
+                }
+              this.setState({adListArr:adList});
+              }
+            });
+        });
+
+    }
+    moveToBid(i){
+      this.props.navigation.navigate('MyModal',{adNo:i+1});
     }
     newBack(){
       this.props.navigation.navigate("Home_Buyer");
-    }
-    submit(){
-      console.log(this.state.adNameValue);
-      this.pushDB();
-      // db.transaction((tx) => {
-      //   tx.executeSql('DELETE FROM adList;');
-      // });
-    }
-
-    async pushDB(){
-      var date=this.state.day+"/"+this.state.month+"/"+this.state.year;
-      db.transaction((tx) => {
-        tx.executeSql('INSERT INTO adList (adName, description, dateCreated, adImage) VALUES\
-        ("'+this.state.adNameValue+'", "'+this.state.adDValue+'","'+date+'","'+this.state.dataImg+'");');
-      });
-
     }
 
     closeDatabase = () => {
@@ -83,7 +88,10 @@ export default class AddBid extends Component {
       <View style={styles.maincontainer}>
       <TitleBar isMedia={false} t_bar={this.t_bar1}/>
             <View style={styles.subcontainer}>
-              <RecyclerView/>
+              <ScrollView>
+                <Text style={styles.textPrimary}>Ad Listing</Text>
+                {this.state.adListArr}
+              </ScrollView>
             </View>
       </View>
     );

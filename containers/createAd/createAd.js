@@ -58,14 +58,26 @@ export default class CreateAd extends Component {
       //   tx.executeSql('DELETE FROM adList;');
       // });
     }
+    queryOther(){
+
+    }
 
     async pushDB(){
       var date=this.state.day+"/"+this.state.month+"/"+this.state.year;
       db.transaction((tx) => {
-        tx.executeSql('INSERT INTO adList (adName, description, dateCreated, adImage) VALUES\
-        ("'+this.state.adNameValue+'", "'+this.state.adDValue+'","'+date+'","'+this.state.dataImg+'");');
-      });
+        tx.executeSql('INSERT INTO bidList (bidAmt) VALUES (-1)',[],
+        ()=>{
+          console.log("success1");
+          tx.executeSql('INSERT INTO adList (adName, description, dateCreated, adImage) VALUES\
+          ("'+this.state.adNameValue+'", "'+this.state.adDValue+'","'+date+'","'+this.state.dataImg+'");',[],
+          ()=>{
+            console.log("success2");
+          },()=>{console.log("failed update2");}
+        );
+        },()=>{console.log("failed update1");});
 
+
+      });
     }
 
     closeDatabase = () => {

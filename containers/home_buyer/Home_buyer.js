@@ -28,12 +28,15 @@ export default class Home_buyer extends Component {
         this.createButton2={
             title:"Show current bids",
             img:require('./../../assets/img/right-arrow.png'),
-            action:null,
+            action:this.showBid.bind(this),
             Buttoncss:{backgroundColor: '#dfe6e9'}
         };
     }
   addBid(){
     this.props.navigation.navigate("AddBid");
+  }
+  showBid(){
+    this.props.navigation.navigate("ShowBid");
   }
 
   render() {
