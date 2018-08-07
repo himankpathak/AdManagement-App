@@ -20,14 +20,16 @@ class MyFlatList extends Component {
    console.log("I am working");
    var sourceImg = { uri: 'data:image/jpeg;base64,' + item.adImage };
    return(
-     <View style={styles.subItem1}>
-      <Image source={sourceImg} style={styles.uploadAvatar}/>
-      <View style={styles.subItem2}>
-       <Text style={styles.textSecond}>{item.dateCreated} &gt;&gt;</Text>
-       <Text style={styles.textSecond}>{item.adName} - {item.description}</Text>
-       <Text style={styles.textSecond}>Current Bid: {item.bidAmt}</Text>
+     <TouchableOpacity onPress={item.mainFunc?() => item.mainFunc(item.keyNo):null}>
+       <View style={styles.subItem1}>
+        <Image source={sourceImg} style={styles.uploadAvatar}/>
+        <View style={styles.subItem2}>
+         <Text style={styles.textSecond}>{item.dateCreated} &gt;&gt;</Text>
+         <Text style={styles.textSecond}>{item.adName} - {item.description}</Text>
+         <Text style={styles.textSecond}>Current Bid: {item.bidAmt}</Text>
+         </View>
        </View>
-     </View>
+      </TouchableOpacity>
    );
  }
 
