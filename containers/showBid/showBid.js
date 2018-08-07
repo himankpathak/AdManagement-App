@@ -4,11 +4,11 @@ import {
   Text,
   Image,
   View,
-  ScrollView,
 } from 'react-native';
 
 import styles from './styles';
 import TitleBar from './../../components/titlebar/TitleBar';
+import MyFlatList from './../../components/flatList/FlatList';
 
 var SQLite = require('react-native-sqlite-storage');
 var db = SQLite.openDatabase({name:'test.db', createFromLocation:'~sqlitemain.db'})
@@ -22,7 +22,7 @@ export default class ShowBid extends Component {
       action:this.newBack.bind(this),
     };
     this.state={
-      adListArr:[],
+      adData:[],
     };
 
     db.transaction((tx) => {
@@ -31,21 +31,12 @@ export default class ShowBid extends Component {
         if(len > 0) {
           // exists owner name John
           var row;
-          var sourceImg;
-          var adList=[];
+          var adData=[];
           for(let i = 0; i < len; i++){
             row = results.rows.item(i);
-            console.log(row);
-            sourceImg = { uri: 'data:image/jpeg;base64,' + row.adImage };
-
-            adList.push(<View key={i} style={styles.subPart}>
-              <Text style={styles.textSecond}>{row.dateCreated} &gt;&gt; {row.adName} - {row.description}</Text>
-            <Image source={sourceImg} style={styles.uploadAvatar}/>
-            <Text style={styles.textPrimary}>Current Bid: {row.bidAmt}</Text>
-            </View>);
-
+            adData.push(row);
           }
-        this.setState({adListArr:adList});
+        this.setState({adData:adData});
         }
       });
   });
@@ -60,10 +51,8 @@ export default class ShowBid extends Component {
       <View style={styles.maincontainer}>
         <TitleBar isMedia={false} t_bar={this.t_bar}/>
         <View style={styles.subcontainer}>
-          <ScrollView>
           <Text style={styles.textPrimary}>Showings Bids</Text>
-          {this.state.adListArr}
-          </ScrollView>
+          <MyFlatList fl={this.state.adData}/>
         </View>
       </View>
     );
