@@ -5,29 +5,26 @@ import {
   Button,
   View,
   Image,
-  ScrollView,
   TouchableOpacity,
 } from 'react-native';
 
 import styles from './styles';
 import TitleBar from './../../components/titlebar/TitleBar';
 import CustomButton from './../../components/customButton/CustomButton';
-import RecyclerView from './../../components/RecyclerListView/RecyclerView';
+import MyFlatList from './../../components/flatList/FlatList';
 
 import {
   Hoshi,
 } from 'react-native-textinput-effects';
 
-//var ImagePicker = require('react-native-image-picker');
-
-  var SQLite = require('react-native-sqlite-storage');
-  var db = SQLite.openDatabase({name:'test.db', createFromLocation:'~sqlitemain.db'});
+var SQLite = require('react-native-sqlite-storage');
+var db = SQLite.openDatabase({name:'test.db', createFromLocation:'~sqlitemain.db'});
 
 export default class AddBid extends Component {
   constructor(props) {
         super(props);
         this.state={
-          adListArr:[],
+          adData:[],
           year:null,
           month:null,
           day:null,
@@ -42,22 +39,18 @@ export default class AddBid extends Component {
         };
 
         db.transaction((tx) => {
-          tx.executeSql('SELECT * FROM adList', [], (tx, results) => {
+          tx.executeSql('SELECT adName,description,adImage,dateCreated,bidAmt,adNo FROM adList LEFT JOIN bidList on bidList.adNo = adList.id;', [], (tx, results) => {
               var len = results.rows.length;
               if(len > 0) {
-                // exists owner name John
                 var row;
-                var sourceImg;
-                var adList=[];
+                var adData=[];
                 for(let i = 0; i < len; i++){
                   row = results.rows.item(i);
-                  sourceImg = { uri: 'data:image/jpeg;base64,' + row.adImage };
-
-                  adList.push(<TouchableOpacity onPress={() => (this.moveToBid.bind(this))(i)} key={i} style={styles.subPart}><Text style={styles.textSecond}>{row.dateCreated} &gt;&gt; {row.adName} - {row.description}</Text>
-                  <Image source={sourceImg} style={styles.uploadAvatar}/></TouchableOpacity>);
-
+                  row.keyNo=i;
+                  row.mainFunc=(i) => (this.moveToBid.bind(this))(i);
+                  adData.push(row);
                 }
-              this.setState({adListArr:adList});
+              this.setState({adData:adData});
               }
             });
         });
@@ -73,13 +66,11 @@ export default class AddBid extends Component {
   render() {
     return (
       <View style={styles.maincontainer}>
-      <TitleBar isMedia={false} t_bar={this.t_bar1}/>
-            <View style={styles.subcontainer}>
-              <ScrollView>
-                <Text style={styles.textPrimary}>Ad Listing</Text>
-                {this.state.adListArr}
-              </ScrollView>
-            </View>
+        <TitleBar isMedia={false} t_bar={this.t_bar1}/>
+          <View style={styles.subcontainer}>
+              <Text style={styles.textPrimary}>Ad Listing</Text>
+              <MyFlatList fl={this.state.adData}/>
+          </View>
       </View>
     );
   }
