@@ -20,14 +20,10 @@ export default class ModalScreen extends Component {
   constructor(props){
     super(props);
     var adNo = this.props.navigation.getParam('adNo', -1);
-    console.log(adNo);
     this.state={adNo:adNo, bidAmt:0};
   }
 
   submitBid(){
-    console.log("submit entered");
-    console.log(this.state.adNo);
-    console.log(this.state.bidAmt);
     this.pushDB();
     // db.transaction((tx) => {
     //   tx.executeSql('DELETE FROM adList;');
@@ -37,8 +33,6 @@ export default class ModalScreen extends Component {
 
   async pushDB(){
     db.transaction((tx) => {
-      console.log("inside sql");
-      console.log(this.state.bidAmt);
       tx.executeSql('UPDATE bidList SET bidAmt = '+this.state.bidAmt+' WHERE adNo='+this.state.adNo+';');
     });
 

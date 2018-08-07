@@ -70,19 +70,6 @@ export default class AddBid extends Component {
       this.props.navigation.navigate("Home_Buyer");
     }
 
-    closeDatabase = () => {
-      if (db) {
-        console.log("Closing database ...");
-        db.close().then((status) => {
-          console.log("Database CLOSED");
-        }).catch((error) => {
-          this.errorCB(error);
-        });
-      } else {
-          console.log("Database was not OPENED");
-      }
-    }
-
   render() {
     return (
       <View style={styles.maincontainer}>

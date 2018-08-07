@@ -18,10 +18,8 @@ import {
   Hoshi,
 } from 'react-native-textinput-effects';
 
-//var ImagePicker = require('react-native-image-picker');
-
-  var SQLite = require('react-native-sqlite-storage');
-  var db = SQLite.openDatabase({name:'test.db', createFromLocation:'~sqlitemain.db'});
+var SQLite = require('react-native-sqlite-storage');
+var db = SQLite.openDatabase({name:'test.db', createFromLocation:'~sqlitemain.db'});
 
 export default class CreateAd extends Component {
   constructor(props) {
@@ -52,14 +50,10 @@ export default class CreateAd extends Component {
       this.props.navigation.navigate("Home_Seller");
     }
     submit(){
-      console.log(this.state.adNameValue);
       this.pushDB();
       // db.transaction((tx) => {
       //   tx.executeSql('DELETE FROM adList;');
       // });
-    }
-    queryOther(){
-
     }
 
     async pushDB(){
@@ -72,29 +66,15 @@ export default class CreateAd extends Component {
           ("'+this.state.adNameValue+'", "'+this.state.adDValue+'","'+date+'","'+this.state.dataImg+'");',[],
           ()=>{
             console.log("success2");
-          },()=>{console.log("failed update2");}
+          },()=>{console.log("failed2");}
         );
-        },()=>{console.log("failed update1");});
+        },()=>{console.log("failed1");});
 
 
       });
     }
 
-    closeDatabase = () => {
-      if (db) {
-        console.log("Closing database ...");
-        db.close().then((status) => {
-          console.log("Database CLOSED");
-        }).catch((error) => {
-          this.errorCB(error);
-        });
-      } else {
-          console.log("Database was not OPENED");
-      }
-    }
-
     mainImg(){
-
     var options = {
     title: 'Select Avatar',
     maxWidth:400,
