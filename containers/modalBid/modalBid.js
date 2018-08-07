@@ -5,10 +5,9 @@ import {
   Button,
   View,
   Image,
-  ScrollView,
-  TouchableOpacity,
 } from 'react-native';
 
+import styles from './styles';
 import {
   Hoshi,
 } from 'react-native-textinput-effects';
@@ -20,15 +19,23 @@ export default class ModalScreen extends Component {
   constructor(props){
     super(props);
     var adNo = this.props.navigation.getParam('adNo', -1);
-    this.state={adNo:adNo, bidAmt:0};
+    var bidAmtPrev = this.props.navigation.getParam('bidAmt', 0);
+    this.state={adNo:adNo, bidAmtPrev:bidAmtPrev, bidAmt:0, msg:''};
   }
 
   submitBid(){
-    this.pushDB();
+    if(this.state.bidAmt>this.state.bidAmtPrev){
+      this.pushDB();
+      this.props.navigation.goBack();
+    }
+    else{
+      this.setState({msg:"Please enter higher amount than current bid"});
+    }
+
     // db.transaction((tx) => {
     //   tx.executeSql('DELETE FROM adList;');
     // });
-    this.props.navigation.goBack();
+
   }
 
   async pushDB(){
@@ -40,23 +47,35 @@ export default class ModalScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center',padding:50 }}>
-        <Text style={{ fontSize: 30 }}>Enter your Bid</Text>
-        <Hoshi
-          style={{marginTop: 4,}}
-          label={'Bid Amt in Rs.'}
-          maskColor={'#F9F7F6'}
-          borderColor={'#3498db'}
-          onChangeText={(text) => { this.setState({bidAmt: text})}}
-        />
-        <Button
-          onPress={ this.submitBid.bind(this)}
-          title="Confirm Bid"
-        />
-        <Button
-          onPress={() => this.props.navigation.goBack()}
-          title="Cancel"
-        />
+      <View style={styles.maincontainer}>
+        <View style={styles.subcontainer}>
+          <Text style={styles.textPrimary}>Current Bid: {this.state.bidAmtPrev}</Text>
+          <Text style={styles.textSecond}>Bid higher amount than {this.state.bidAmtPrev} to place your bid!</Text>
+        </View>
+        <View style={styles.subcontainer}>
+          <Text style={{ fontSize: 26,padding:10 }}>Enter your Bid</Text>
+          <Hoshi
+            style={{marginTop: 4,}}
+            label={'Bid Amt in Rs.'}
+            borderColor={'#3498db'}
+            onChangeText={(text) => { this.setState({bidAmt: text})}}
+          />
+        </View>
+        <View style={styles.butcontainer}>
+          <Button
+            style={styles.butstyle}
+            onPress={ this.submitBid.bind(this)}
+            title="Confirm Bid"
+          />
+          <Button
+            style={styles.butstyle}
+            onPress={() => this.props.navigation.goBack()}
+            title="Cancel"
+          />
+        </View>
+        <View style={styles.subcontainer}>
+          <Text style={styles.errormsg}>{this.state.msg}</Text>
+        </View>
       </View>
     );
   }
