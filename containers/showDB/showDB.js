@@ -22,11 +22,7 @@ export default class ShowDB extends Component {
       imgLeft:require('./../../assets/img/left-arrow.png'),
       action:this.newBack.bind(this),
     };
-    this.FlatListData={
-      data:[{key: 'a'}, {key: 'b'}]
-    };
     this.state={
-      adListArr:[],
       adData:[],
     };
 
@@ -36,12 +32,9 @@ export default class ShowDB extends Component {
         if(len > 0) {
           // exists owner name John
           var row;
-          var sourceImg;
-          var adList=[];
           var adData=[];
           for(let i = 0; i < len; i++){
             row = results.rows.item(i);
-            sourceImg = { uri: 'data:image/jpeg;base64,' + row.adImage };
             adData.push(row);
           }
         this.setState({adData:adData});
