@@ -20,7 +20,7 @@ export default class ModalScreen extends Component {
     super(props);
     var adNo = this.props.navigation.getParam('adNo', -1);
     var bidAmtPrev = this.props.navigation.getParam('bidAmt', 0);
-    this.state={adNo:adNo, bidAmtPrev:bidAmtPrev, bidAmt:0, msg:''};
+    this.state={adNo:adNo, bidAmtPrev:bidAmtPrev, bidAmt:-1, msg:''};
   }
 
   submitBid(){

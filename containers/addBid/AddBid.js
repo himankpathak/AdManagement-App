@@ -57,7 +57,7 @@ export default class AddBid extends Component {
 
     }
     moveToBid(i){
-      this.props.navigation.navigate('MyModal',{adNo:i+1});
+      this.props.navigation.navigate('MyModal',{adNo:i+1,bidAmt:this.state.adData[i].bidAmt});
     }
     newBack(){
       this.props.navigation.navigate("Home_Buyer");

@@ -17,7 +17,6 @@ class MyFlatList extends Component {
  }
 
  renderItem = ({item}) =>{
-   console.log("I am working");
    var sourceImg = { uri: 'data:image/jpeg;base64,' + item.adImage };
    return(
      <TouchableOpacity onPress={item.mainFunc?() => item.mainFunc(item.keyNo):null}>

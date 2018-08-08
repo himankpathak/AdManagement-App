@@ -26,7 +26,7 @@ export default class Home_seller extends Component {
             Buttoncss:{backgroundColor: '#dfe6e9'}
         };
         this.createButton2={
-            title:"Show Database",
+            title:"Show Ads",
             img:require('./../../assets/img/right-arrow.png'),
             action:this.showdb.bind(this),
             Buttoncss:{backgroundColor: '#dfe6e9'}

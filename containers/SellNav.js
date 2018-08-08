@@ -34,13 +34,16 @@ const SellApp = createDrawerNavigator({
   Notifications: {
     screen: NotifScreen,
   },
-  ShowDB: {
-    screen: ShowDB,
-  },
   CreateNewAd: {
     screen: CreateAd,
     navigationOptions: {
       drawerLabel: "Create New Advert",
+    }
+  },
+  ShowDB: {
+    screen: ShowDB,
+    navigationOptions: {
+      drawerLabel: "Show Ads",
     }
   },
   BuyMode: {

@@ -37,10 +37,22 @@ const BuyApp = createDrawerNavigator({
   },
   AddBid: {
     screen: AddBid,
+    navigationOptions: {
+      drawerLabel: "Bid on Ads",
+    }
   },
   ShowBid: {
     screen: ShowBid,
+    navigationOptions: {
+      drawerLabel: "Show Bids on Ads",
+    }
   },
+  // SellMode: {
+  //   screen: SellNav,
+  //   navigationOptions: {
+  //     drawerLabel: "Switch mode to Seller",
+  //   }
+  // },
 });
 
 const RootStack = createStackNavigator(
