@@ -17,7 +17,7 @@ export default class ShowDB extends Component {
   constructor(props){
     super(props);
     this.t_bar={
-      title:"Database Details",
+      title:"Browse Adverts",
       imgLeft:require('./../../assets/img/left-arrow.png'),
       action:this.newBack.bind(this),
     };
@@ -51,7 +51,7 @@ export default class ShowDB extends Component {
       <View style={styles.maincontainer}>
         <TitleBar isMedia={false} t_bar={this.t_bar}/>
         <View style={styles.subcontainer}>
-          <Text style={styles.textPrimary}>Database Main</Text>
+          <Text style={styles.textPrimary}>Advertisement List</Text>
           <MyFlatList fl={this.state.adData}/>
         </View>
       </View>

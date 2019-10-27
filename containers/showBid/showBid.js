@@ -17,7 +17,7 @@ export default class ShowBid extends Component {
   constructor(props){
     super(props);
     this.t_bar={
-      title:"Database Details",
+      title:"Browse Adverts",
       imgLeft:require('./../../assets/img/left-arrow.png'),
       action:this.newBack.bind(this),
     };
