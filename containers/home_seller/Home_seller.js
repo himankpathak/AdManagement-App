@@ -16,7 +16,7 @@ export default class Home_seller extends Component {
         super(props);
         this.toggleDraw = this.props.navigation.toggleDrawer.bind(this);
         this.t_bar1={
-          title:"Awesome App",
+          title:"Seller",
           action:this.toggleDraw
         };
         this.createButton={
