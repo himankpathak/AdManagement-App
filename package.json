@@ -15,7 +15,7 @@
     "react-native": "0.65.0",
     "react-native-image-picker": "^1.1.0",
     "react-native-sqlite-storage": "^4.1.0",
-    "react-native-textinput-effects": "^0.5.1",
+    "react-native-textinput-effects": "^0.6.2",
     "react-navigation": "^3.0.0"
   },
   "devDependencies": {
