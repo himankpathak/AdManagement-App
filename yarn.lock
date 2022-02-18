@@ -956,7 +956,7 @@
     globals "^11.1.0"
     lodash "^4.17.13"
 
-"@babel/traverse@^7.14.0", "@babel/traverse@^7.16.7", "@babel/traverse@^7.17.0", "@babel/traverse@^7.17.3":
+"@babel/traverse@^7.14.0", "@babel/traverse@^7.16.7", "@babel/traverse@^7.17.0", "@babel/traverse@^7.17.3", "@babel/traverse@^7.7.4":
   version "7.17.3"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.17.3.tgz#0ae0f15b27d9a92ba1f2263358ea7c4e7db47b57"
   integrity sha512-5irClVky7TxRWIRtxlh2WPUUOLhcPN06AGgaQSB8AEwuyEBgJVuJ5imdHm5zxk8w0QS5T+tDfnDxAlhWjpb7cw==
@@ -2736,11 +2736,12 @@ eslint-plugin-react-native@3.6.0:
   dependencies:
     eslint-plugin-react-native-globals "^0.1.1"
 
-eslint-plugin-react-native@^3.2.1:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-native/-/eslint-plugin-react-native-3.7.0.tgz#7e2cc1f3cf24919c4c0ea7fac13301e7444e105f"
-  integrity sha512-krLtQmGih/uJDPxF8DBpnU8J3kRUsDm/Dey5yEhOO8LN1I3Wesbk4PGCg8Zah57azKFU+9YtGooFjJcDJWUs+g==
+eslint-plugin-react-native@^3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-native/-/eslint-plugin-react-native-3.11.0.tgz#c73b0886abb397867e5e6689d3a6a418682e6bac"
+  integrity sha512-7F3OTwrtQPfPFd+VygqKA2VZ0f2fz0M4gJmry/TRE18JBb94/OtMxwbL7Oqwu7FGyrdeIOWnXQbBAveMcSTZIA==
   dependencies:
+    "@babel/traverse" "^7.7.4"
     eslint-plugin-react-native-globals "^0.1.1"
 
 eslint-plugin-react@7.12.4:
