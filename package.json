@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "eslint-plugin-react-native": "^3.2.1",
-    "react": "16.9.0",
+    "react": "16.14.0",
     "react-native": "0.65.0",
     "react-native-image-picker": "^1.1.0",
     "react-native-sqlite-storage": "^4.1.0",
